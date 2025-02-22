@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de CPF e CNPJ</title>
+    <link rel="stylesheet" href="cpfcnpj/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Gerador de CPF e CNPJ</h1>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <section class="description">
+                <p>Bem-vindo ao gerador de números de CPF e CNPJ aleatórios. Use esta ferramenta para gerar números válidos de CPF e CNPJ para testes e desenvolvimento.</p>
+            </section>
+            <section class="generator">
+                <button id="generate-cpf">Gerar CPF</button>
+                <p id="cpf-result"></p>
+                <button id="generate-cnpj">Gerar CNPJ</button>
+                <p id="cnpj-result"></p>
+            </section>
+            <br>
+            <!-- Inicia codigo Contador -->
+
+            <div align="center">            <p>Contador de acesso:</p><a title='Contador de Visitas do MegaContador' href='https://megacontador.com.br/' ><img src='https://megacontador.com.br/img-DHCvpSr0jQ11qLPL-48.gif' border='0' alt='Contador de visitas'></a><p class="small-text">Desde 22/02/2025</p></div>
+            <!-- Fim do codigo Contador -->
+            
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <div align="center">
+            <p>&copy; 2025 Tecnologia BR. Todos os direitos reservados.</p>
+        </div>
+            <p id="cpf-footer-result"></p> <!-- Elemento para exibir o CPF gerado -->
+            <p id="cnpj-footer-result"></p> <!-- Elemento para exibir o CNPJ gerado -->
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cpfResultElement = document.getElementById('cpf-result');
+            const cpfFooterResultElement = document.getElementById('cpf-footer-result');
+            const cnpjResultElement = document.getElementById('cnpj-result');
+            const cnpjFooterResultElement = document.getElementById('cnpj-footer-result');
+
+            document.getElementById('generate-cpf').addEventListener('click', function() {
+                const cpf = gerarCPF();
+                cpfResultElement.textContent = cpf;
+         });
+
+            document.getElementById('generate-cnpj').addEventListener('click', function() {
+                const cnpj = gerarCNPJ();
+                cnpjResultElement.textContent = cnpj;
+            });
+
+            function gerarCPF() {
+                let cpf = '';
+                for (let i = 0; i < 9; i++) {
+                    cpf += Math.floor(Math.random() * 10);
+                }
+                cpf += calcularDigitoVerificadorCPF(cpf);
+                return formatarCPF(cpf);
+            }
+
+            function calcularDigitoVerificadorCPF(cpf) {
+                let soma = 0;
+                let peso = 10;
+                for (let i = 0; i < 9; i++) {
+                    soma += cpf[i] * peso--;
+                }
+                let digito1 = 11 - (soma % 11);
+                digito1 = digito1 > 9 ? 0 : digito1;
+                soma = 0;
+                peso = 11;
+                for (let i = 0; i < 9; i++) {
+                    soma += cpf[i] * peso--;
+                }
+                soma += digito1 * 2;
+                let digito2 = 11 - (soma % 11);
+                digito2 = digito2 > 9 ? 0 : digito2;
+                return `${digito1}${digito2}`;
+            }
+
+            function formatarCPF(cpf) {
+                return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+            }
+
+            function gerarCNPJ() {
+                let cnpj = '';
+                for (let i = 0; i < 12; i++) {
+                    cnpj += Math.floor(Math.random() * 10);
+                }
+                cnpj += calcularDigitoVerificadorCNPJ(cnpj);
+                return formatarCNPJ(cnpj);
+            }
+
+            function calcularDigitoVerificadorCNPJ(cnpj) {
+                let soma = 0;
+                let peso = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+                for (let i = 0; i < 12; i++) {
+                    soma += cnpj[i] * peso[i];
+                }
+                let digito1 = 11 - (soma % 11);
+                digito1 = digito1 > 9 ? 0 : digito1;
+                soma = 0;
+                peso = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+                for (let i = 0; i < 12; i++) {
+                    soma += cnpj[i] * peso[i + 1];
+                }
+                soma += digito1 * peso[0];
+                let digito2 = 11 - (soma % 11);
+                digito2 = digito2 > 9 ? 0 : digito2;
+                return `${digito1}${digito2}`;
+            }
+
+            function formatarCNPJ(cnpj) {
+                return cnpj.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
+            }
+        });
+    </script>
+</body>
+</html>
