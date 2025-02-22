@@ -3,14 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valor do Dólar Atual</title>
+    <title>Valor do Dólar Hoje</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Valor do Dólar Atual</h1>
+        <h1>Valor do Dólar Hoje</h1>
         <p id="dolar-value">Carregando...</p>
+        <p>Contador de acessos: <span id="contador">Carregando...</span></p>
     </div>
+    <script>
+        // Função para atualizar o contador de acessos
+        function atualizarContador() {
+            fetch('/.netlify/functions/contador')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('contador').innerText = data;
+                })
+                .catch(error => console.error('Erro ao atualizar o contador:', error));
+        }
+
+        // Chama a função para atualizar o contador quando a página carrega
+        window.onload = atualizarContador;
+    </script>
     <script src="js/scripts.js"></script>
 </body>
 </html>
