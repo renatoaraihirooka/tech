@@ -1,5 +1,24 @@
 {
   "dependencies": {
+    "express": "^4.21.2",
     "faunadb": "^4.8.2"
-  }
+  },
+  "name": "tech",
+  "version": "1.0.0",
+  "description": "This is a basic HTML project that includes a simple webpage with linked CSS and JavaScript files.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renatoaraihirooka/tech.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/renatoaraihirooka/tech/issues"
+  },
+  "homepage": "https://github.com/renatoaraihirooka/tech#readme"
 }
