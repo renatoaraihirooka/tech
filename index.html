@@ -5,14 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tecnologia BR</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <h1>Tecnologia BR</h1>
         <nav>
             <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">Sobre</a></li>
+                <li>
+                    <a href="#dolar">Developer</a> <!-- Alterado de "Dev" para "Developer" -->
+                    <ul>
+                        <li><a href="dolar/index.html">Dolar Hoje</a></li>
+                    </ul>
+                </li>
+                <li><a href="#stocks">Bolsa de Valores</a></li> <!-- Alterado de "Sobre" para "Bolsa de Valores" -->
             </ul>
         </nav>
     </header>
@@ -25,7 +31,20 @@
             <h2>Sobre Nós</h2>
             <p>Somos uma equipe dedicada a trazer as últimas novidades e análises do mundo da tecnologia.</p>
         </section>
+        <section id="menu-list">
+            <h2>Itens do Menu</h2>
+            <ul>
+                <li>Developer
+                    <ul>
+                        <li><a href="dolar/index.html">Dolar Hoje</a></li>
+                    </ul>
+                </li>
+                <li>Bolsa de Valores</li>
+            </ul>
+        </section>
     </main>
-    <script src="js/scripts.js"></script>
+    <footer>
+        <p>&copy; 2025 Tecnologia BR. Todos os direitos reservados.</p>
+    </footer>
 </body>
 </html>
