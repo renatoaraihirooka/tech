@@ -127,3 +127,10 @@ footer {
 footer p {
     margin: 0.5rem 0;
 }
+
+.script-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
