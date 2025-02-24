@@ -54,7 +54,7 @@ nav ul li a:hover {
 }
 
 nav ul li ul {
-    display: none;
+    display: none; /* Submenus não são exibidos automaticamente */
     position: absolute;
     top: 100%;
     left: 0;
@@ -63,10 +63,6 @@ nav ul li ul {
     list-style: none;
     border-radius: 0 0 8px 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-nav ul li:hover ul {
-    display: block;
 }
 
 nav ul li ul li {
@@ -126,6 +122,13 @@ footer {
 
 footer p {
     margin: 0.5rem 0;
+}
+
+.ad-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
 }
 
 .script-container {
